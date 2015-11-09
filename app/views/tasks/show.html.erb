@@ -1,0 +1,47 @@
+
+
+<div class="row">
+  <div class="small-12 large-12 columns"><h1><%= @task.title %></h1></div>
+  <div class="small-12 large-4 columns">
+    <% if @task.finished? %>
+      <%= image_tag 'completed-icon.png' %>
+      <% else %>
+        <% if @task.end_date < 1.day.ago %>
+          <%= image_tag 'expired-icon.png' %>
+        <% else %>
+          <%= image_tag 'to-do-icon.png' %>
+        <%end%>
+      <%end%>
+    </div>
+  <div class="small-12 large-8 columns">
+    <strong>Description:</strong>
+<p> 
+<%= @task.description %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @task.duration %>
+  hours
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @task.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @task.end_date %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @task.user.username %>
+</p>
+  </div>
+  <%= link_to 'Edit', edit_task_path(@task),:class =>"button" %> 
+  <%= link_to 'Back', tasks_path, :class =>"button secondary" %>
+</div>
+
+

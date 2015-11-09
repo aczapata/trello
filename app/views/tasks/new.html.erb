@@ -1,0 +1,84 @@
+<%= form_for(@task) do |f| %>
+
+  <form>
+    <div class="row">
+      <div class="large-12 columns">
+          <h1>New Task</h1>
+          <% if @task.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+          <ul>
+          <% @task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+        
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="field">
+            <%= f.label :title %><br>
+            <%= f.text_field :title %>
+          </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="field">
+            <%= f.label :description %><br>
+            <%= f.text_area :description %>
+        </div>
+      </div>
+    </div>
+    
+     <div class="row">
+      <div class="large-12 columns">
+        <div class="field">
+            <%= f.label :duration %><br>
+            <%= f.number_field :duration %>
+      </div>
+      </div>
+    </div>
+    
+    
+    <div class="row">
+      <div class="large-6 columns">
+        <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.date_select :start_date %>
+  </div>
+      </div>
+      <div class="large-6 columns">
+        <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.date_select :end_date %>
+  </div>
+      </div>
+      </div>
+      
+      </div>
+    </div>
+    <%= f.hidden_field :finished, :value => false %>
+      
+      <div class="row">
+      <div class="large-12 columns">
+        <div class="actions">
+    <%= f.submit "Create" , :class =>"button"%>
+    <%= link_to 'Cancel', tasks_path , :class =>"button secondary"%>
+  </div>
+      </div>
+    </div>
+      
+  </form>
+  
+
+<% end %>
+
+
+
