@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   def index
     @done_tasks = Task.where("finished == ?", true).order(:end_date)
     @expired_tasks = Task.where("finished == ?", false).where("end_date < ?", 1.day.ago).order(:end_date)
-    @notdone_tasks = Task.where("finished == ?", false).where("end_date > ?", 1.day.ago).order(:end_date)
+    @notdone_tasks = Task.where("finished == ?", false).where("end_date >= ?", 1.day.ago).order(:end_date)
   end
 
   # GET /tasks/1

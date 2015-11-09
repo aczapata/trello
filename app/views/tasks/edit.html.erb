@@ -1,6 +1,75 @@
-<h1>Editing Task</h1>
+<%= form_for(@task) do |f| %>
 
-<%= render 'form' %>
+  <form>
+    <div class="row">
+      <div class="large-12 columns">
+          <h1>Editing Task</h1>
+          <% if @task.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-<%= link_to 'Show', @task %> |
-<%= link_to 'Back', tasks_path %>
+          <ul>
+          <% @task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+        
+      </div>
+    
+      <div class="large-12 columns">
+        <div class="field">
+            <%= f.label :title %><br>
+            <%= f.text_field :title %>
+          </div>
+      </div>
+   
+      <div class="large-12 columns">
+        <div class="field">
+            <%= f.label :description %><br>
+            <%= f.text_area :description %>
+        </div>
+      </div>
+    
+      <div class="large-12 columns">
+        <div class="field">
+            <%= f.label :duration %><br>
+            <%= f.number_field :duration %>
+      </div>
+      </div>
+    
+      <div class="large-6 columns">
+        <div class="field">
+            <%= f.label :start_date %><br>
+            <%= f.date_select :start_date %>
+          </div>
+      </div>
+      
+      <div class="large-6 columns">
+        <div class="field">
+            <%= f.label :end_date %><br>
+            <%= f.date_select :end_date %>
+          </div>
+      </div>
+      
+      <div class="large-12 columns">
+        <div class="field">
+        <p>Finished? <%= f.check_box :finished %></p>
+        
+      </div>
+      </div>
+      
+      
+      <div class="large-12 columns">
+        <div class="actions">
+        <%= f.submit "Save" , :class =>"button"%>
+        <%= link_to 'Cancel', tasks_path , :class =>"button secondary"%>
+      </div>
+
+    </div>
+    
+    </div>
+  </form>
+  <% end %>
+
